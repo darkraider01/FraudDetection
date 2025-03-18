@@ -1,0 +1,121 @@
+Loaded 1754155 transactions from 183 files.
+Initial columns: ['TRANSACTION_ID', 'TX_DATETIME', 'CUSTOMER_ID', 'TERMINAL_ID', 'TX_AMOUNT', 'TX_TIME_SECONDS', 'TX_TIME_DAYS', 'TX_FRAUD', 'TX_FRAUD_SCENARIO']
+Initial TX_DATETIME head: 0   2018-04-01 00:00:31
+1   2018-04-01 00:02:10
+2   2018-04-01 00:07:56
+3   2018-04-01 00:09:29
+4   2018-04-01 00:10:34
+Name: TX_DATETIME, dtype: datetime64[ns]
+Initial TX_DATETIME type: datetime64[ns]
+Data cleaned, shape: (1754155, 9)
+Columns after removing duplicates: ['TRANSACTION_ID', 'TX_DATETIME', 'CUSTOMER_ID', 'TERMINAL_ID', 'TX_AMOUNT', 'TX_TIME_SECONDS', 'TX_TIME_DAYS', 'TX_FRAUD', 'TX_FRAUD_SCENARIO']
+TX_DATETIME type after duplicates removed: datetime64[ns]
+Data sorted by TX_DATETIME, first few rows:           TX_DATETIME
+0 2018-04-01 00:00:31
+1 2018-04-01 00:02:10
+2 2018-04-01 00:07:56
+3 2018-04-01 00:09:29
+4 2018-04-01 00:10:34
+TX_DATETIME type after sorting: datetime64[ns]
+Terminal features added, first few rows:           TX_DATETIME  terminal_tx_count
+0 2018-04-01 00:00:31                  0
+1 2018-04-01 00:02:10                  0
+2 2018-04-01 00:07:56                  0
+3 2018-04-01 00:09:29                  0
+4 2018-04-01 00:10:34                  0
+Time features added, TX_DATETIME type: datetime64[ns]
+Starting rolling feature computation...
+Data sorted for rolling, TX_DATETIME type: datetime64[ns]
+Terminal fraud 28d computed, columns: ['TRANSACTION_ID', 'TX_DATETIME', 'CUSTOMER_ID', 'TERMINAL_ID', 'TX_AMOUNT', 'TX_TIME_SECONDS', 'TX_TIME_DAYS', 'TX_FRAUD', 'TX_FRAUD_SCENARIO', 'terminal_fraud_count', 'terminal_tx_count', 'terminal_fraud_rate', 'customer_avg_amount', 'amount_deviation', 'customer_fraud_count', 'hour', 'day_of_week', 'terminal_fraud_28d']
+Terminal fraud 28d ratio computed, first few values:               TX_DATETIME  terminal_fraud_28d_ratio
+9579  2018-04-02 01:00:01                       0.0
+12806 2018-04-02 09:49:55                       0.0
+24184 2018-04-03 12:14:41                       0.0
+46284 2018-04-05 16:47:41                       0.0
+58807 2018-04-07 06:05:21                       0.0
+Customer features computed, columns: ['TRANSACTION_ID', 'TX_DATETIME', 'CUSTOMER_ID', 'TERMINAL_ID', 'TX_AMOUNT', 'TX_TIME_SECONDS', 'TX_TIME_DAYS', 'TX_FRAUD', 'TX_FRAUD_SCENARIO', 'terminal_fraud_count', 'terminal_tx_count', 'terminal_fraud_rate', 'customer_avg_amount', 'amount_deviation', 'customer_fraud_count', 'hour', 'day_of_week', 'terminal_fraud_28d', 'terminal_fraud_28d_ratio', 'customer_amount_14d_avg', 'amount_spike', 'amount_spike_flag', 'amount_spike_14d', 'amount_spike_flag_14d', 'amount_spike_220', 'amount_deviation_14d']
+Columns after final deduplication: ['TRANSACTION_ID', 'TX_DATETIME', 'CUSTOMER_ID', 'TERMINAL_ID', 'TX_AMOUNT', 'TX_TIME_SECONDS', 'TX_TIME_DAYS', 'TX_FRAUD', 'TX_FRAUD_SCENARIO', 'terminal_fraud_count', 'terminal_tx_count', 'terminal_fraud_rate', 'customer_avg_amount', 'amount_deviation', 'customer_fraud_count', 'hour', 'day_of_week', 'terminal_fraud_28d', 'terminal_fraud_28d_ratio', 'customer_amount_14d_avg', 'amount_spike', 'amount_spike_flag', 'amount_spike_14d', 'amount_spike_flag_14d', 'amount_spike_220', 'amount_deviation_14d']
+Features prepared, shape: (1754155, 23)
+Data split, train shape: (1403324, 23) test shape: (350831, 23)
+Scale pos weight: 47.39388325045978
+Starting model training...
+Training until validation scores don't improve for 100 rounds
+Early stopping, best iteration is:
+[65]	valid_0's auc: 0.985533
+Model training completed.
+
+Classification Report (Threshold = 0.79):
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    347895
+           1       0.85      0.91      0.88      2936
+
+    accuracy                           1.00    350831
+   macro avg       0.93      0.95      0.94    350831
+weighted avg       1.00      1.00      1.00    350831
+
+Threshold 0.79 processed successfully.
+
+Classification Report (Threshold = 0.8):
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    347895
+           1       0.86      0.91      0.88      2936
+
+    accuracy                           1.00    350831
+   macro avg       0.93      0.95      0.94    350831
+weighted avg       1.00      1.00      1.00    350831
+
+Threshold 0.8 processed successfully.
+
+Classification Report (Threshold = 0.81):
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    347895
+           1       0.88      0.91      0.89      2936
+
+    accuracy                           1.00    350831
+   macro avg       0.94      0.95      0.95    350831
+weighted avg       1.00      1.00      1.00    350831
+
+Threshold 0.81 processed successfully.
+
+Classification Report (Threshold = 0.82):
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    347895
+           1       0.89      0.90      0.89      2936
+
+    accuracy                           1.00    350831
+   macro avg       0.94      0.95      0.95    350831
+weighted avg       1.00      1.00      1.00    350831
+
+Threshold 0.82 processed successfully.
+
+Classification Report (Threshold = 0.83):
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    347895
+           1       0.90      0.90      0.90      2936
+
+    accuracy                           1.00    350831
+   macro avg       0.95      0.95      0.95    350831
+weighted avg       1.00      1.00      1.00    350831
+
+Threshold 0.83 processed successfully.
+
+Classification Report (Threshold = 0.84):
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    347895
+           1       0.91      0.89      0.90      2936
+
+    accuracy                           1.00    350831
+   macro avg       0.95      0.95      0.95    350831
+weighted avg       1.00      1.00      1.00    350831
+
+Threshold 0.84 processed successfully.
+ROC AUC Score: 0.9855
+Feature importance plot saved as 'feature_importance.png' and displayed.
+Model saved as 'fraud_detection_model_optimized_tuned.txt'
+Script execution completed successfully.
